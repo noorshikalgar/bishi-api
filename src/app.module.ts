@@ -1,7 +1,11 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { UserModule } from './user/user.module';
+import { PaymentModule } from './payment/payment.module';
+import { BishiModule } from './bishi/bishi.module';
+import { WinnersModule } from './winners/winners.module';
 
 @Module({
   imports: [
@@ -15,6 +19,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       autoLoadEntities: true,
       synchronize: true,
     }),
+    UserModule,
+    PaymentModule,
+    BishiModule,
+    WinnersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
