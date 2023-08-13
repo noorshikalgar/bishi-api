@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { PaymentModule } from './payment/payment.module';
 import { BishiModule } from './bishi/bishi.module';
 import { WinnersModule } from './winners/winners.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { WinnersModule } from './winners/winners.module';
     PaymentModule,
     BishiModule,
     WinnersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

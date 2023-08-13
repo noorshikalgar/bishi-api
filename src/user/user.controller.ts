@@ -1,15 +1,15 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiTags } from '@nestjs/swagger';
-import { UserDTO } from './dto/user.dto';
+import { CreateUserDTO } from './dto/user.dto';
 
-@ApiTags('user')
+@ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Post('/signup')
-  singUp(@Body() user: UserDTO): any {
+  singUp(@Body() user: CreateUserDTO): any {
     return this.userService.createUser(user);
   }
 }

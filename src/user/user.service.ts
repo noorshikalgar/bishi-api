@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entity/user.entity';
 import { Repository } from 'typeorm';
-import { UserDTO } from './dto/user.dto';
+import { CreateUserDTO } from './dto/user.dto';
 
 @Injectable()
 export class UserService {
@@ -10,7 +10,7 @@ export class UserService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  async createUser(user: UserDTO): Promise<any> {
+  async createUser(user: CreateUserDTO): Promise<any> {
     const checkUserExists = await this.userRepository.findOne({
       where: [{ email: user.email }, { phone: user.phone }],
     });
@@ -31,8 +31,4 @@ export class UserService {
   async getUserByEmailorPhone(value: string): Promise<User> {
     return this.userRepository.findOneBy([{ email: value }, { phone: value }]);
   }
-
-  // async signIn(): Promise<void> {
-
-  // }
 }
