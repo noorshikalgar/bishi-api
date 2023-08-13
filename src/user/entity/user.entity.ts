@@ -1,3 +1,4 @@
+import { Exclude } from 'class-transformer';
 import { createHmac } from 'crypto';
 import {
   Entity,
@@ -26,6 +27,7 @@ export class User {
   @Column()
   email: string;
 
+  @Exclude()
   @Column()
   password: string;
 
