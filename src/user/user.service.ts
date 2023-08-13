@@ -31,4 +31,8 @@ export class UserService {
   async getUserByEmailorPhone(value: string): Promise<User> {
     return this.userRepository.findOneBy([{ email: value }, { phone: value }]);
   }
+
+  async getUserByUserId(userId: number): Promise<User> {
+    return this.userRepository.findOneBy({ id: userId });
+  }
 }
