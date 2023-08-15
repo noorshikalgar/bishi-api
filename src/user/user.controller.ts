@@ -9,7 +9,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from './user.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreateUserDTO } from './dto/user.dto';
 import { User } from './entity/user.entity';
 import { AuthGuard } from 'src/auth/auth.guard';
@@ -24,10 +24,11 @@ export class UserController {
     return this.userService.createUser(user);
   }
 
+  @ApiBearerAuth()
   @UseGuards(AuthGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   @Get(':userId')
-  getUserById(@Param('userId') userId: number): Promise<User> {
+  getUserById(@Param('userId') userId: string): Promise<User> {
     return this.userService.getUserByUserId(userId);
   }
 }
