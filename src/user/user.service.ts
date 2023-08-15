@@ -29,10 +29,27 @@ export class UserService {
   }
 
   async getUserByEmailorPhone(value: string): Promise<User> {
-    return this.userRepository.findOneBy([{ email: value }, { phone: value }]);
+    try {
+      return await this.userRepository.findOneByOrFail([
+        { email: value },
+        { phone: value },
+      ]);
+    } catch (err) {
+      throw new HttpException(
+        { status: HttpStatus.BAD_REQUEST, message: 'User not found' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
-  async getUserByUserId(userId: number): Promise<User> {
-    return this.userRepository.findOneBy({ id: userId });
+  async getUserByUserId(userId: string): Promise<User> {
+    try {
+      return await this.userRepository.findOneByOrFail({ id: userId });
+    } catch (err) {
+      throw new HttpException(
+        { status: HttpStatus.BAD_REQUEST, message: 'User not found' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }

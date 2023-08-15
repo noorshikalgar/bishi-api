@@ -7,6 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('Bishi Api Documentation')
     .setDescription('Bishi api documentation')
     .setVersion('1.0')
