@@ -11,10 +11,14 @@ async function bootstrap() {
     .setTitle('Bishi Api Documentation')
     .setDescription('Bishi api documentation')
     .setVersion('1.0')
-    .addTag('Bishi')
+    .addServer('http://localhost:3000')
+    .addTag('Authorization', 'Authorization APIs')
+    .addTag('User', 'User model APIs')
+    .addTag('Bishi', 'Bishi model APIs')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('api-json', app, document);
 
   await app.listen(3000);
 }

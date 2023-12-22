@@ -23,6 +23,7 @@ import { ConfigModule } from '@nestjs/config';
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+      // socketPath: '/var/run/mysqld/mysqld.sock',
     }),
     UserModule,
     PaymentModule,
@@ -33,4 +34,14 @@ import { ConfigModule } from '@nestjs/config';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    console.log('HOST: ' + process.env.DB_HOST);
+    console.log('port: ', parseInt(process.env.DB_PORT));
+    console.log('user: ' + process.env.DB_USER);
+    console.log(
+      'Password: ' + process.env.DB_PASSWORD,
+      typeof process.env.DB_PASSWORD,
+    );
+  }
+}

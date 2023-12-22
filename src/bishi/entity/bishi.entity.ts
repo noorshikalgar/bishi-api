@@ -5,8 +5,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
   OneToMany,
+  JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -23,10 +24,12 @@ export class Bishi {
   @Column({ default: false })
   isActive: boolean;
 
-  @OneToOne((type) => User, (user) => user.id)
+  @ManyToOne(() => User, (user) => user.id)
+  @JoinColumn()
   admin: User;
 
-  @OneToMany((type) => User, (user) => user.id)
+  @OneToMany(() => User, (user) => user.bishi)
+  @JoinColumn()
   members: User[];
 
   @Column()

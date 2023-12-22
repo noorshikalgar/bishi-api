@@ -1,5 +1,6 @@
 import { Exclude } from 'class-transformer';
 import { createHmac } from 'crypto';
+import { Bishi } from 'src/bishi/entity/bishi.entity';
 import {
   Entity,
   Column,
@@ -8,6 +9,7 @@ import {
   UpdateDateColumn,
   BeforeUpdate,
   BeforeInsert,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -33,6 +35,9 @@ export class User {
 
   @Column()
   phone: string;
+
+  @ManyToOne(() => Bishi, (bishi) => bishi.members)
+  bishi: Bishi;
 
   @CreateDateColumn()
   createdAt: Date;

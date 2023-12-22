@@ -7,8 +7,15 @@ export class CreateBishiDTO {
   description: string;
   @ApiProperty()
   totalAmount: string;
-  @ApiProperty({ type: 'date' })
+  @ApiProperty({ type: Date, format: 'yyyy-MM-dd' })
   collectionDate: string;
-  @ApiProperty({ type: 'date' })
+  @ApiProperty({ type: Date, format: 'yyyy-MM-dd' })
   dueDate: string;
+}
+
+export class addMemberToBishiDTO {
+  @ApiProperty()
+  userId: string;
+  @ApiProperty()
+  bishiId: string;
 }
